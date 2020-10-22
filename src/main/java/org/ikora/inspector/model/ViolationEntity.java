@@ -3,6 +3,7 @@ package org.ikora.inspector.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "violation")
 public class ViolationEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

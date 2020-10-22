@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name = "project")
 public class ProjectEntity {
 
     @Id
@@ -13,6 +14,11 @@ public class ProjectEntity {
     private int loc;
 
     @ManyToMany(targetEntity= ProjectEntity.class)
+    @JoinTable(
+            name = "dependency",
+            joinColumns = @JoinColumn(name = "target"),
+            inverseJoinColumns = @JoinColumn(name = "source")
+    )
     private Set<ProjectEntity> dependencies;
 
     protected ProjectEntity() {}

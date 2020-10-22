@@ -1,11 +1,9 @@
 package org.ikora.inspector.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "keyword_type")
 public class KeywordTypeEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

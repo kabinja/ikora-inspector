@@ -3,6 +3,7 @@ package org.ikora.inspector.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "clone")
 public class CloneEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -31,7 +32,7 @@ public class CloneEntity {
         );
     }
 
-    public Long getGroup_id() {
+    public Long getGroupId() {
         return group_id;
     }
 

@@ -1,11 +1,9 @@
 package org.ikora.inspector.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "clone_type")
 public class CloneTypeEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

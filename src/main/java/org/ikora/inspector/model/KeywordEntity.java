@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name = "keyword")
 public class KeywordEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -18,6 +19,11 @@ public class KeywordEntity {
     private PositionEntity position;
 
     @ManyToMany(targetEntity= KeywordEntity.class)
+    @JoinTable(
+            name = "usage",
+            joinColumns = @JoinColumn(name = "source"),
+            inverseJoinColumns = @JoinColumn(name = "target")
+    )
     private Set<KeywordEntity> usage;
 
     protected KeywordEntity() {}
