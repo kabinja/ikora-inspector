@@ -7,7 +7,7 @@ public class CloneEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    private Long group;
+    private Long group_id;
 
     @ManyToOne
     private CloneTypeEntity type;
@@ -17,8 +17,8 @@ public class CloneEntity {
 
     public CloneEntity() {}
 
-    public CloneEntity(Long group, CloneTypeEntity type, KeywordEntity keyword){
-        this.group = group;
+    public CloneEntity(Long group_id, CloneTypeEntity type, KeywordEntity keyword){
+        this.group_id = group_id;
         this.type = type;
         this.keyword = keyword;
     }
@@ -27,12 +27,12 @@ public class CloneEntity {
     public String toString() {
         return String.format(
                 "Clone[group=%d, type=%s, keyword=%s]",
-                group, type.getName(), keyword.getName()
+                group_id, type.getName(), keyword.getName()
         );
     }
 
-    public Long getGroup() {
-        return group;
+    public Long getGroup_id() {
+        return group_id;
     }
 
     public CloneTypeEntity getType() {
