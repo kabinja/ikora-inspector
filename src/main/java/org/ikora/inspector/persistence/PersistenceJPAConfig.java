@@ -1,12 +1,8 @@
 package org.ikora.inspector.persistence;
 
 import org.ikora.inspector.run.DatabaseSettings;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.jdbc.DataSourceBuilder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.*;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -22,7 +18,7 @@ public class PersistenceJPAConfig{
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("org.ikora.inspector.entity");
+        em.setPackagesToScan("org.ikora.inspector.model");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -39,7 +35,6 @@ public class PersistenceJPAConfig{
 
     @Lazy
     @Bean
-    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public DataSource dataSource() {
         return DataSourceBuilder.create()
                 .driverClassName("org.sqlite.JDBC")
@@ -51,7 +46,9 @@ public class PersistenceJPAConfig{
 
     Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.dialect", "org.ikora.inspector.datasource.SQLDialect");
+        properties.setProperty("hibernate.dialect", "org.ikora.inspector.persistence.SQLDialect");
+        properties.setProperty("hibernate.hbm2ddl.auto", "update");
+        properties.setProperty("hibernate.show_sql", "true");
 
         return properties;
     }

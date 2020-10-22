@@ -3,8 +3,11 @@ package org.ikora.inspector.run;
 import org.apache.commons.cli.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.ikora.inspector.IkoraInspectorApplication;
 import org.ikora.inspector.configuration.InspectorConfiguration;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 import tech.ikora.model.Projects;
 
@@ -51,6 +54,7 @@ public class Runner implements CommandLineRunner {
         final File output = new File(configuration.getOutput());
         DatabaseSettings.setUrl(output.getAbsolutePath());
 
-        return new Database();
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(IkoraInspectorApplication.class);
+        return applicationContext.getBean(Database.class);
     }
 }

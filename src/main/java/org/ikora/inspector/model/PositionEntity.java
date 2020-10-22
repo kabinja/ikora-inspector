@@ -1,9 +1,9 @@
-package org.ikora.inspector.entity;
+package org.ikora.inspector.model;
 
 import javax.persistence.*;
 
 @Entity
-public class Position {
+public class PositionEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
@@ -13,11 +13,11 @@ public class Position {
     private String file;
 
     @ManyToOne
-    private Project project;
+    private ProjectEntity project;
 
-    protected Position() {};
+    protected PositionEntity() {};
 
-    public Position(String start, String end, String file, Project project){
+    public PositionEntity(String start, String end, String file, ProjectEntity project){
         this.start = start;
         this.end = end;
         this.file = file;
@@ -48,7 +48,7 @@ public class Position {
         return file;
     }
 
-    public Project getProject() {
+    public ProjectEntity getProject() {
         return project;
     }
 }

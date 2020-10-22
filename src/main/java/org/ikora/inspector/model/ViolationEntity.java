@@ -1,9 +1,9 @@
-package org.ikora.inspector.entity;
+package org.ikora.inspector.model;
 
 import javax.persistence.*;
 
 @Entity
-public class Violation {
+public class ViolationEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
@@ -11,11 +11,11 @@ public class Violation {
     private String name;
 
     @ManyToOne
-    private Position position;
+    private PositionEntity position;
 
-    protected Violation() {}
+    protected ViolationEntity() {}
 
-    public Violation(String name){
+    public ViolationEntity(String name){
         this.name = name;
     }
 
@@ -32,7 +32,7 @@ public class Violation {
         return name;
     }
 
-    public Position getPosition() {
+    public PositionEntity getPosition() {
         return position;
     }
 }

@@ -1,10 +1,10 @@
-package org.ikora.inspector.entity;
+package org.ikora.inspector.model;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Project {
+public class ProjectEntity {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -12,12 +12,12 @@ public class Project {
     private String name;
     private int loc;
 
-    @ManyToMany(targetEntity=Project.class)
-    private Set<Project> dependencies;
+    @ManyToMany(targetEntity= ProjectEntity.class)
+    private Set<ProjectEntity> dependencies;
 
-    protected Project() {}
+    protected ProjectEntity() {}
 
-    public Project(String name, int loc){
+    public ProjectEntity(String name, int loc){
         this.name = name;
         this.loc = loc;
         this.dependencies = dependencies;
@@ -40,11 +40,11 @@ public class Project {
         return loc;
     }
 
-    public Set<Project> getDependencies() {
+    public Set<ProjectEntity> getDependencies() {
         return dependencies;
     }
 
-    public void setDependencies(Set<Project> dependencies) {
+    public void setDependencies(Set<ProjectEntity> dependencies) {
         this.dependencies = dependencies;
     }
 }

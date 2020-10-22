@@ -1,6 +1,10 @@
 package org.ikora.inspector.repository;
 
-import org.ikora.inspector.entity.CloneCluster;
+import org.ikora.inspector.model.CloneEntity;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface CloneClusterRepository extends CrudRepository<CloneCluster, Long> { }
+@Lazy
+@Repository
+public interface CloneClusterRepository extends CrudRepository<CloneEntity, Long> { }

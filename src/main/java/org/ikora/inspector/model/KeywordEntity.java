@@ -1,28 +1,28 @@
-package org.ikora.inspector.entity;
+package org.ikora.inspector.model;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Keyword {
+public class KeywordEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
     @ManyToOne
-    private KeywordType keywordType;
+    private KeywordTypeEntity keywordType;
 
     private String name;
 
     @ManyToOne
-    private Position position;
+    private PositionEntity position;
 
-    @ManyToMany(targetEntity=Keyword.class)
-    private Set<Keyword> usage;
+    @ManyToMany(targetEntity= KeywordEntity.class)
+    private Set<KeywordEntity> usage;
 
-    protected Keyword() {}
+    protected KeywordEntity() {}
 
-    public Keyword(KeywordType keywordType, String name, Position position){
+    public KeywordEntity(KeywordTypeEntity keywordType, String name, PositionEntity position){
         this.keywordType = keywordType;
         this.name = name;
         this.position = position;
@@ -40,7 +40,7 @@ public class Keyword {
         return id;
     }
 
-    public KeywordType getType() {
+    public KeywordTypeEntity getType() {
         return keywordType;
     }
 
@@ -48,15 +48,15 @@ public class Keyword {
         return name;
     }
 
-    public Position getPosition() {
+    public PositionEntity getPosition() {
         return position;
     }
 
-    public Set<Keyword> getUsage() {
+    public Set<KeywordEntity> getUsage() {
         return usage;
     }
 
-    public void setUsage(Set<Keyword> usage) {
+    public void setUsage(Set<KeywordEntity> usage) {
         this.usage = usage;
     }
 }

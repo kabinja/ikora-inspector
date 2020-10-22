@@ -1,4 +1,4 @@
-package org.ikora.inspector.entity;
+package org.ikora.inspector.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,21 +6,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class KeywordType {
+public class CloneTypeEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private String name;
 
-    protected KeywordType() {}
+    protected CloneTypeEntity() {}
 
-    public KeywordType(String name){
+    public CloneTypeEntity(String name){
         this.name = name;
     }
 
     @Override
     public String toString() {
-        return String.format("KeywordType[id=%d, name=%s]", id, name);
+        return String.format("CloneType[id=%d, name=%s]", id, name);
     }
 
     public Long getId() {

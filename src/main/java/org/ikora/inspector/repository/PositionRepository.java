@@ -1,6 +1,10 @@
 package org.ikora.inspector.repository;
 
-import org.ikora.inspector.entity.Position;
+import org.ikora.inspector.model.PositionEntity;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface PositionRepository extends CrudRepository<Position, Long> { }
+@Lazy
+@Repository
+public interface PositionRepository extends CrudRepository<PositionEntity, Long> { }

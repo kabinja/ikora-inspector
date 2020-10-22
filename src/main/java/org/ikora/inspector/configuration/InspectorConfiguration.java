@@ -12,6 +12,7 @@ import java.io.IOException;
 public class InspectorConfiguration {
     @JsonProperty("output")
     private String output;
+    @JsonProperty("gitlab")
     private Gitlab gitlab;
     @JsonProperty("local source")
     private LocalSource localSource;
