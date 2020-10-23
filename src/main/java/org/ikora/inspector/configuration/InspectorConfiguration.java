@@ -25,6 +25,7 @@ public class InspectorConfiguration {
     @JsonIgnore
     private static final Logger logger = LogManager.getLogger(InspectorConfiguration.class);
 
+    @JsonIgnore
     public static InspectorConfiguration initialize(String config) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         File file = new File(config);
@@ -59,14 +60,12 @@ public class InspectorConfiguration {
         this.localSource = localSource;
     }
 
-    public static Logger getLogger() {
-        return logger;
-    }
-
+    @JsonIgnore
     public boolean isGitLab() {
         return gitlab != null;
     }
 
+    @JsonIgnore
     public boolean isLocalSource() {
         return localSource != null;
     }
