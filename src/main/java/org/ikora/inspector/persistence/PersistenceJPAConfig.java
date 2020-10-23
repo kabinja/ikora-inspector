@@ -48,7 +48,6 @@ public class PersistenceJPAConfig{
         Properties properties = new Properties();
         properties.setProperty("hibernate.dialect", "org.ikora.inspector.persistence.SQLDialect");
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
-        properties.setProperty("hibernate.show_sql", "true");
 
         return properties;
     }

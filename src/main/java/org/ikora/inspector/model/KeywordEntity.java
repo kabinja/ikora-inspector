@@ -14,6 +14,10 @@ public class KeywordEntity {
     private KeywordTypeEntity keywordType;
 
     private String name;
+    private int loc;
+    private int size;
+    private int level;
+    private int library_calls;
 
     @ManyToOne
     private PositionEntity position;
@@ -28,17 +32,21 @@ public class KeywordEntity {
 
     protected KeywordEntity() {}
 
-    public KeywordEntity(KeywordTypeEntity keywordType, String name, PositionEntity position){
+    public KeywordEntity(KeywordTypeEntity keywordType, String name, int loc, int size, int level, int libraryCalls, PositionEntity position){
         this.keywordType = keywordType;
         this.name = name;
+        this.loc = loc;
+        this.size = size;
+        this.level = level;
+        this.library_calls = libraryCalls;
         this.position = position;
     }
 
     @Override
     public String toString() {
         return String.format(
-                "Keyword[id=%d, type=%s, name=%s, file=%s, project)%s]",
-                id, keywordType.getName(), name, position.getFile(), position.getProject().getName()
+                "Keyword[id=%d, type=%s, name=%s, loc=%d, size=%d, level=%d file=%s, project)%s]",
+                id, keywordType.getName(), name, loc, size, level, position.getFile(), position.getProject().getName()
         );
     }
 
@@ -52,6 +60,22 @@ public class KeywordEntity {
 
     public String getName() {
         return name;
+    }
+
+    public int getLoc() {
+        return loc;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getLibraryCalls() {
+        return library_calls;
     }
 
     public PositionEntity getPosition() {

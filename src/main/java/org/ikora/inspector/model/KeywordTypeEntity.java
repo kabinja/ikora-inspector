@@ -9,16 +9,18 @@ public class KeywordTypeEntity {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private String name;
+    private String description;
 
     protected KeywordTypeEntity() {}
 
-    public KeywordTypeEntity(String name){
+    public KeywordTypeEntity(String name, String description){
         this.name = name;
+        this.description = description;
     }
 
     @Override
     public String toString() {
-        return String.format("KeywordType[id=%d, name=%s]", id, name);
+        return String.format("KeywordType[id=%d, name=%s, description=%s]", id, name, description);
     }
 
     public Long getId() {
@@ -27,5 +29,9 @@ public class KeywordTypeEntity {
 
     public String getName() {
         return name;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

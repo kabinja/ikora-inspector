@@ -3,24 +3,24 @@ package org.ikora.inspector.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "clone_type")
-public class CloneTypeEntity {
+@Table(name = "clone_dispersion")
+public class CloneDispersionEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private String name;
     private String description;
 
-    protected CloneTypeEntity() {}
+    protected CloneDispersionEntity() {}
 
-    public CloneTypeEntity(String name, String description){
+    public CloneDispersionEntity(String name, String description){
         this.name = name;
         this.description = description;
     }
 
     @Override
     public String toString() {
-        return String.format("CloneType[id=%d, name=%s, description=%s]", id, name, description);
+        return String.format("CloneDispersion[id=%d, name=%s, description=%s]", id, name, description);
     }
 
     public Long getId() {
