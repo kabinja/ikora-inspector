@@ -15,11 +15,11 @@ import tech.ikora.model.Projects;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static org.ikora.inspector.utils.FileUtils.createTmpFolder;
 
 public class Builder {
     private static final Logger logger = LogManager.getLogger(Builder.class);
@@ -82,30 +82,6 @@ public class Builder {
         else{
             throw new Exception("Invalid configuration, missing source for text to analyze");
         }
-
-        return location;
-    }
-
-    private static String createTmpFolder(String location) {
-        File folder = location != null ? new File(location) : null;
-
-        if(location == null || location.isEmpty() || !folder.isDirectory()){
-            File tmp = FileUtils.getTempDirectory();
-            Date date = new Date();
-            Timestamp ts = new Timestamp(date.getTime());
-            String folderName = "project-analytics-" + ts.toInstant().toEpochMilli();
-            folder = new File(tmp, folderName);
-
-            location = folder.getAbsolutePath();
-        }
-
-        if(!folder.exists()) {
-            if(!folder.mkdir()){
-                logger.error("Failed to create directory '" + location + "'", new IOException("Failed to create directory " + location));
-            }
-        }
-
-        folder.deleteOnExit();
 
         return location;
     }

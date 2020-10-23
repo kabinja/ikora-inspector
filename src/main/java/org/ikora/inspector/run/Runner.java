@@ -4,6 +4,7 @@ import org.apache.commons.cli.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.ikora.inspector.IkoraInspectorApplication;
+import org.ikora.inspector.configuration.DatabaseConfiguration;
 import org.ikora.inspector.configuration.InspectorConfiguration;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
@@ -27,7 +28,7 @@ public class Runner implements CommandLineRunner {
 
         final InspectorConfiguration configuration = readConfiguration(args);
         final Projects projects = Builder.build(configuration);
-        final Database database = createDatabase(configuration);
+        final Database database = createDatabase(configuration.getDatabase());
 
         database.store(projects);
 
@@ -50,9 +51,17 @@ public class Runner implements CommandLineRunner {
         return InspectorConfiguration.initialize(cmd.getOptionValue("config"));
     }
 
-    private Database createDatabase(InspectorConfiguration configuration) {
-        final File output = new File(configuration.getOutput());
-        DatabaseSettings.setUrl(output.getAbsolutePath());
+    private Database createDatabase(DatabaseConfiguration configuration) throws Exception {
+        if(configuration.getDriver().equalsIgnoreCase("sqlite")){
+            final File output = new File(configuration.getLocation());
+            DatabaseSettings.setUrl(output.getAbsolutePath());
+        }
+        else{
+            throw new Exception(String.format(
+                    "Database driver '%s' in configuration is not supported",
+                    configuration.getDriver())
+            );
+        }
 
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(IkoraInspectorApplication.class);
         return applicationContext.getBean(Database.class);

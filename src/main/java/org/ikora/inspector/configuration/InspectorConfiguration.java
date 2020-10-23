@@ -1,6 +1,7 @@
 package org.ikora.inspector.configuration;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
@@ -10,17 +11,19 @@ import java.io.File;
 import java.io.IOException;
 
 public class InspectorConfiguration {
-    @JsonProperty("output")
-    private String output;
+    @JsonProperty("output database")
+    private DatabaseConfiguration database;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("gitlab")
     private Gitlab gitlab;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("local source")
     private LocalSource localSource;
 
     @JsonIgnore
     private static final Logger logger = LogManager.getLogger(InspectorConfiguration.class);
-
-    private InspectorConfiguration(){}
 
     public static InspectorConfiguration initialize(String config) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
@@ -32,12 +35,12 @@ public class InspectorConfiguration {
         return instance;
     }
 
-    public String getOutput() {
-        return output;
+    public DatabaseConfiguration getDatabase() {
+        return database;
     }
 
-    public void setOutput(String output){
-        this.output = output;
+    public void setDatabase(DatabaseConfiguration database){
+        this.database = database;
     }
 
     public Gitlab getGitlab(){
