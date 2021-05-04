@@ -5,15 +5,15 @@ import org.ikora.inspector.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
-import tech.ikora.analytics.KeywordStatistics;
-import tech.ikora.analytics.clones.CloneCluster;
-import tech.ikora.analytics.clones.Clones;
-import tech.ikora.analytics.clones.KeywordCloneDetection;
-import tech.ikora.analytics.visitor.SizeVisitor;
-import tech.ikora.model.*;
+
+import lu.uni.serval.ikora.core.analytics.KeywordStatistics;
+import lu.uni.serval.ikora.core.analytics.clones.CloneCluster;
+import lu.uni.serval.ikora.core.analytics.clones.Clones;
+import lu.uni.serval.ikora.core.analytics.clones.KeywordCloneDetection;
+import lu.uni.serval.ikora.core.analytics.visitor.SizeVisitor;
+import lu.uni.serval.ikora.core.model.*;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Lazy
 @Service

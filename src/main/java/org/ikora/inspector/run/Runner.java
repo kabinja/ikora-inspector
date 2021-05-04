@@ -10,7 +10,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
-import tech.ikora.model.Projects;
+
+import lu.uni.serval.ikora.core.model.Projects;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,17 +1,17 @@
 package org.ikora.inspector.run;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.ikora.inspector.configuration.Gitlab;
 import org.ikora.inspector.configuration.InspectorConfiguration;
-import tech.ikora.BuildConfiguration;
-import tech.ikora.builder.BuildResult;
-import tech.ikora.gitloader.Api;
-import tech.ikora.gitloader.GitEngine;
-import tech.ikora.gitloader.GitEngineFactory;
-import tech.ikora.gitloader.git.LocalRepository;
-import tech.ikora.model.Projects;
+import lu.uni.serval.ikora.core.BuildConfiguration;
+import lu.uni.serval.ikora.core.builder.BuildResult;
+import lu.uni.serval.ikora.core.model.Projects;
+
+import lu.uni.serval.commons.git.api.Api;
+import lu.uni.serval.commons.git.api.GitEngine;
+import lu.uni.serval.commons.git.api.GitEngineFactory;
+import lu.uni.serval.commons.git.utils.LocalRepository;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +33,7 @@ public class Builder {
 
         // analyze projects
         logger.info("Start building projects...");
-        BuildResult results = tech.ikora.builder.Builder.build(location, buildConfiguration, true);
+        BuildResult results = lu.uni.serval.ikora.core.builder.Builder.build(location, buildConfiguration, true);
 
         logger.info(String.format("Projects parsed in %d ms", results.getParsingTime()));
         logger.info(String.format("Projects linked in %d ms", results.getResolveTime()));
@@ -54,7 +54,7 @@ public class Builder {
 
             String tmpFolder = createTmpFolder(gitlabConfig.getLocalFolder());
 
-            final GitEngine git = GitEngineFactory.create(Api.Gitlab);
+            final GitEngine git = GitEngineFactory.create(Api.GITLAB);
             git.setToken(gitlabConfig.getToken());
             git.setUrl(gitlabConfig.getUrl());
             git.setCloneFolder(tmpFolder);

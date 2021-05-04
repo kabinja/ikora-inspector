@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 
 public class Helpers {
     public static File getResourcesFile(String name) throws IOException, URISyntaxException {
-        URL resource = tech.ikora.utils.FileUtils.class.getClassLoader().getResource(name);
+        URL resource = lu.uni.serval.ikora.core.utils.FileUtils.class.getClassLoader().getResource(name);
         if (resource == null) {
             throw new IOException("Failed to locate resource template for project analytics");
         }
